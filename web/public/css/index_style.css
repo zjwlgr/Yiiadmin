@@ -1,0 +1,23 @@
+body{ font-family:"Microsoft Yahei",微软雅黑,"Helvetica Neue",Arial,sans-serif; background: #ebf4fe;}
+input,button,select,textarea{outline:none}
+textarea{resize:none}
+a:focus{outline: none;}
+
+::selection{background:#a63f16;color:#FFF;}
+::-moz-selection{background:#a63f16;color:#FFF;}
+
+.headers{width: 100%; height: auto; overflow: hidden;}
+.form1-fluid{width: 100%; height: 85px; background-color: #ffffff;}
+.navbar-default{background-color: #206494; border: 0px; border-radius: 0px; margin: 0px; min-height: 42px;}
+.navbar-default .my-nav > li > a{padding-bottom: 11px; padding-top: 11px; color: #ffffff; margin-right: 2px; font-family: "Courier New", Courier, monospace; font-size: 16px; font-weight: bold;}
+.navbar-default .my-nav > .active > a {background-color: #a63f16; color: #fff;}
+.navbar-default .my-nav > li > a:focus,.navbar-default .my-nav > li > a:hover,.navbar-default .my-nav > .active > a:focus,.navbar-default .my-nav > .active > a:hover {background-color: #a63f16; color: #fff;}
+.container-fluid .my-collapse{width:1088px; margin: 0 auto;}
+
+
+
+
+
+
+
+
