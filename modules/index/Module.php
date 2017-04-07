@@ -21,7 +21,11 @@ class Module extends \yii\base\Module
     public function init()
     {
         parent::init();
-
+        $ismobile = \Yii::$app->myhelper->ismobile();
+        if($ismobile){
+            header('Location: http://m.form1.cn');
+            exit;
+        }
         // custom initialization code goes here
     }
 }

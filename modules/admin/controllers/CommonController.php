@@ -28,7 +28,11 @@ class CommonController extends Controller {
     }
 
     public function header(){
-        return $this->manager_session;
+        $manager_session = $this->manager_session;
+        $manager_session['group_id'] = empty($manager_session['group_id']) ? 0 : $manager_session['group_id'];
+        $group = ManagerGroupInfo::group_one($manager_session['group_id']);
+        $manager_session['group_name'] = $group['gname'];
+        return $manager_session;
     }
 
     public function left(){
@@ -70,14 +74,16 @@ class CommonController extends Controller {
     public function judge(){
         $user = $this->manager_session;
         $manager = ManagerInfo::manager_one($user['id']);
-        if($manager['group_id'] == 1) {//超级管理员无需检查
+        if($manager['group_id'] == 1) {
+            //超级管理员无需检查
         }else{
             $url = Yii::$app->request->url;
             if($url != '/admin/index/default.html') {//系统信息首页 所有用户默认可查看
                 $url = str_replace('/admin/', '', $url);
                 $url = str_replace('.html', '', $url);//得到功能uri 例：function/list
                 $furi = FunctionInfo::furi($url);//查询功能列表中对应记录
-                if (empty($furi)) {//查询结果为空暂不处理
+                if (empty($furi)) {
+                    //查询结果为空暂不处理
                 } else {
                     $group = ManagerGroupInfo::group_one($manager['group_id']);
                     $function_ar = json_decode($group['function'], true);

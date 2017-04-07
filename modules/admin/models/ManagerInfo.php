@@ -38,7 +38,7 @@ class ManagerInfo extends ActiveRecord{
     }
 
     public function login($username){
-        $rows = $this->db->createCommand('SELECT id,username,password,uname,number,locking FROM '.ManagerInfo::tableName().' WHERE username=:username')
+        $rows = $this->db->createCommand('SELECT id,username,password,uname,number,group_id,locking FROM '.ManagerInfo::tableName().' WHERE username=:username')
             ->bindValues([':username' => $username])
             ->queryOne();
         return $rows;
@@ -146,6 +146,16 @@ class ManagerInfo extends ActiveRecord{
         $ManagerInfo = ManagerInfo::findOne($id);
         $ManagerInfo->delete();
         //ManagerRecordInfo::deletes_user($id);
+    }
+
+    /*根据管理员的ID，查询管理，返回列表，用于：文章发布者*/
+    public static function manager_article(){
+        $list = ManagerInfo::find()
+            ->select(['id','uname'])
+            ->where(['id' => [1,2]])
+            ->orderBy('id ASC')
+            ->asArray()->all();
+        return $list;
     }
 
 

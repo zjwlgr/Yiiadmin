@@ -7,16 +7,40 @@ return [
 
 
 
+    //Rest ful
+    /*['class' => 'yii\rest\UrlRule', 'controller' => 'user'],
+    相比于URL管理的Web应用程序，上述主要的新东西是通过RESTful API 请求yii\rest\UrlRule。这个特殊的URL规则类将会 建立一整套子URL规则来支持路由和URL创建的指定的控制器。 例如， 上面的代码中是大致按照下面的规则:
+     *
+    'PUT,PATCH users/<id>' => 'user/update',
+    'DELETE users/<id>' => 'user/delete',
+    'GET,HEAD users/<id>' => 'user/view',
+    'POST users' => 'user/create',
+    'GET,HEAD users' => 'user/index',
+    'users/<id>' => 'user/options',
+    'users' => 'user/options',
+    */
 
 
+
+
+
+    //mobile
+    'http://m.form1.cn' => 'mobile', //绑定二级域名时，只写要绑定的模块名称
+    'm-<one>-<two>-<id:\d+>' => 'mobile/index/content',
+    'm-search' => 'mobile/index/search',
+    'm-<class>' => 'mobile/index/list',
+    'english' => 'mobile/topic/english',
+    'math' => 'mobile/topic/math',
 
 
     //index
-    'topic' => 'index/index/topic',
-
-
-
-
+    '<one>-<two>-<id:\d+>' => 'index/index/content',
+    'tools-json-format' => 'index/tools/index',
+    'tools-unix-format' => 'index/tools/unix',
+    'tools-md5-encrypt' => 'index/tools/md5',
+    'tools-url-encoding' => 'index/tools/url',
+    'search' => 'index/index/search',
+    '<class>' => 'index/index/list',
 
 
 

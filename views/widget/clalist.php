@@ -1,4 +1,4 @@
-<div class="row show-grid">
+<div class="row show-grid" mouse="row">
     <div class="col-md-1 id-text"><?= $params['id'] ?></div>
     <div class="col-md-4" style="margin-left: <?=45*($params['depth']-1)?>px;">
         <div class="input-group input-group-sm">

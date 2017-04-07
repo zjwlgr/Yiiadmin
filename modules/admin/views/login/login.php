@@ -5,6 +5,8 @@ use app\assets\ArtdialogAsset;
 AdminbaseAsset::register($this);
 ArtdialogAsset::register($this);
 $this->title = \Yii::$app->params['backtitle'].'入口 - Login';
+$this->params['keywords'] = '';
+$this->params['description'] = '';
 ?>
 <style type="text/css">
     body{background: #5E87B0;}

@@ -14,7 +14,9 @@ class FunctionController extends CommonController
         $function->attributes = $FunctionInfo;
         if($function->validate() && $function->load(Yii::$app->request->post())){
             $result = FunctionInfo::add($FunctionInfo);
-            if($result){$this->redirect(Url::to(['function/list']));}
+            if($result){
+                Yii::mysuccess('系统功能新增成功！',Url::to(['function/list']));
+            }
         }else{
             $group_list = FunctionInfo::group_list();
             return $this->render('add',['group_list' => $group_list]);
@@ -35,7 +37,9 @@ class FunctionController extends CommonController
         $function->attributes = Yii::$app->request->post('FunctionInfo');
         if($function->validate() && $function->load(Yii::$app->request->post())){
             $result = FunctionInfo::up(Yii::$app->request->post('FunctionInfo'));
-            if($result){$this->redirect(Url::to(['function/list']));}
+            if($result){
+                Yii::mysuccess('系统功能编辑成功！',Url::to(['function/list']));
+            }
         }else{
             $group_list = FunctionInfo::group_list();
             $funt_one = FunctionInfo::funt_one(Yii::$app->request->get('id'));

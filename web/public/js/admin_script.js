@@ -139,7 +139,8 @@ $(function(){
     });
 
     /*下拉菜单选择时操作*/
-    $("#dropdownMenuone > li > a").bind('click', function(){
+    $(document).delegate('#dropdownMenuone > li > a','click',function(){
+    //$("#dropdownMenuone > li > a").bind('click', function(){
         var $i = $(this).attr('_i');
         var $t = $(this).html();
         $(this).parent().parent().prev().children('#text').html($t);
@@ -360,17 +361,48 @@ $(function(){
         return false;
     });//双击展开所有子分类
 
-    $(document).delegate('.show-grid[mouse!=none]','mouseenter',function(){
+    $(document).delegate('.show-grid[mouse=row]','mouseenter',function(){
         $(this).css({background:'#f8f8f8'});
-    }).delegate('.show-grid[mouse!=none]','mouseleave',function(){
+    }).delegate('.show-grid[mouse=row]','mouseleave',function(){
         $(this).css({background:'#ffffff'});
     });//鼠标滑过变色
 
     /*无限级分类 部分 =====*/
 
+    /*文章添加 - 选择一级分类 加载二级分类*/
+    $("#dropdownMenuone_article > li > a").bind('click', function(){
+        var $this = $(this);
+        var $i = $this.attr('_i');
+        var $t = $this.html();
+        $this.parent().parent().prev().children('#text').html($t);
+        $this.parent().parent().next().val($i);
+        $this.parent().parent().parent().removeClass('open');
+        $this.parent().parent().parent().next().html($loadimg);
+        $.post($("#ajax_class_two-u").val(), {id: $i, _csrf: $csrf}, function (data) {
+            $this.parent().parent().parent().next().html(data);
+        });
+        return false;
+    });
 
-
-
+    /*新增文章的验证*/
+    $("#form1_article").bind('submit', function(){
+        if($("#class_one_id").val() == ''){
+            art.dialog({lock: true,opacity: 0.5,content: "请选择文章一级分类！",icon: 'warning',ok: function(){}});
+            return false;
+        }
+        if($("#class_two_id").val() == '' || $("#class_two_id").length <= 0){
+            art.dialog({lock: true,opacity: 0.5,content: "请选择文章二级分类！",icon: 'warning',ok: function(){}});
+            return false;
+        }
+        if($("#title").val() == ''){
+            art.dialog({lock: true,opacity: 0.5,content: "请输入文章标题！",icon: 'warning',ok: function(){$('#title').focus();}});
+            return false;
+        }
+        if(ue.hasContents() == false){
+            art.dialog({lock: true,opacity: 0.5,content: "请输入文章详细内容！",icon: 'warning',ok: function(){ue.focus()}});
+            return false;
+        }
+    });
 
 
 

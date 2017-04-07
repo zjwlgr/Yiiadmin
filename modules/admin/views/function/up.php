@@ -13,7 +13,7 @@ $this->params['title'] = '系统功能管理--编辑';
     <div class="bs-center">
         <form id="form1_function" name="form1_function" method="post" action="" class="form-horizontal">
             <input name="_csrf" type="hidden" id="_csrf" value="<?= Yii::$app->request->csrfToken ?>">
-            <input name="FunctionInfo[id]" id="id" type="hidden"  value="<?= $funt_one['id'] ?>">
+            <input name="FunctionInfo[id]" type="hidden"  value="<?= $funt_one['id'] ?>">
             <?php if($funt_one['fid'] == 0){?>
                 <input type="hidden" name="FunctionInfo[furi]" id="furi" value="<?= $funt_one['furi'] ?>">
             <div class="form-group">

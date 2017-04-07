@@ -15,6 +15,8 @@ class ComposerStaticInite201cefac2ccb60c0554cd6c27513b6d
         'y' => 
         array (
             'yii\\swiftmailer\\' => 16,
+            'yii\\mongodb\\' => 12,
+            'yii\\imagine\\' => 12,
             'yii\\gii\\' => 8,
             'yii\\faker\\' => 10,
             'yii\\debug\\' => 10,
@@ -37,6 +39,14 @@ class ComposerStaticInite201cefac2ccb60c0554cd6c27513b6d
         'yii\\swiftmailer\\' => 
         array (
             0 => __DIR__ . '/..' . '/yiisoft/yii2-swiftmailer',
+        ),
+        'yii\\mongodb\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/yiisoft/yii2-mongodb',
+        ),
+        'yii\\imagine\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/yiisoft/yii2-imagine',
         ),
         'yii\\gii\\' => 
         array (
@@ -77,6 +87,13 @@ class ComposerStaticInite201cefac2ccb60c0554cd6c27513b6d
     );
 
     public static $prefixesPsr0 = array (
+        'I' => 
+        array (
+            'Imagine' => 
+            array (
+                0 => __DIR__ . '/..' . '/imagine/imagine/lib',
+            ),
+        ),
         'H' => 
         array (
             'HTMLPurifier' => 

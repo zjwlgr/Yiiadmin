@@ -27,21 +27,14 @@ class FunctionInfo extends ActiveRecord{
             $function->ctime = time();
             $function->save();
             $insert_id = $function->attributes['id'];
-
-            $function = new FunctionInfo();
-            $function->fid = $insert_id;
-            $function->fname = $post['fname'];
-            $function->furi = $post['furi'];
-            $function->ctime = time();
-            $result = $function->save();
-        }else{
-            $function = new FunctionInfo();
-            $function->fid = $post['fid'];
-            $function->fname = $post['fname'];
-            $function->furi = $post['furi'];
-            $function->ctime = time();
-            $result = $function->save();
+            $post['fid'] = $insert_id;
         }
+        $function = new FunctionInfo();
+        $function->fid = $post['fid'];
+        $function->fname = $post['fname'];
+        $function->furi = $post['furi'];
+        $function->ctime = time();
+        $result = $function->save();
         return $result;
     }
 

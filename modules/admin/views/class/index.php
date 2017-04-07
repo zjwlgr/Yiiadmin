@@ -23,7 +23,7 @@ $this->params['title'] = '系统分类管理';
             <input type="hidden" id="updclass-u" value="<?= Url::to(['class/updown']) ?>">
         </span>
 
-        <div class="row show-grid top-table" mouse="none">
+        <div class="row show-grid top-table">
             <div class="col-md-1">ID</div>
             <div class="col-md-3">名称</div>
             <div class="col-md-1 text-align">排序</div>

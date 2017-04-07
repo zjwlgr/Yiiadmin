@@ -28,7 +28,9 @@ class ManagerController extends CommonController
         $model->attributes = $ManagerInfoPost;
         if($model->validate() && $model->load(Yii::$app->request->post())){
             $result = $model->add($ManagerInfoPost);
-            if($result){$this->redirect(['manager/list']);}else{
+            if($result){
+                Yii::mysuccess('管理员新增成功！',Url::to(['manager/list']));
+            }else{
                 Yii::myerror('用户 '.$ManagerInfoPost['username'].' 已存在，请更换！');
             }
         }else {
@@ -44,7 +46,9 @@ class ManagerController extends CommonController
         $model->attributes = $ManagerInfoPost;
         if($model->validate() && $model->load(Yii::$app->request->post())){
             $result = $model->up($ManagerInfoPost);
-            if($result){$this->redirect(['manager/list']);}else{
+            if($result){
+                Yii::mysuccess('管理员编辑成功！',Url::to(['manager/list']));
+            }else{
                 Yii::myerror('用户 '.$ManagerInfoPost['username'].' 已存在，请更换！');
             }
         }else {

@@ -10,6 +10,8 @@ AdminbaseAsset::register($this);
 $maintitle = \Yii::$app->params['backtitle'].'--'.$this->params['title'];
 $this->title = $maintitle;
 $maintitle_ar = explode("--",$maintitle);
+$this->params['keywords'] = '';
+$this->params['description'] = '';
 
 $this->beginContent('@app/views/layouts/base.php');
 ?>
@@ -39,7 +41,7 @@ $this->beginContent('@app/views/layouts/base.php');
             <li id="header-user" class="dropdown">
                 <a class="dropdown-toggle" href="">
                     <span class="glyphicon glyphicon-user glyphicon-pos-2"></span>
-                    超级管理员 [ <span class="username"><?= $this->params['header']['uname'] ?></span> ]
+                    <?= $this->params['header']['group_name'] ?> [ <span class="username"><?= $this->params['header']['uname'] ?></span> ]
                 </a>
             </li>
             <li id="header-message" class="dropdown">

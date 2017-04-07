@@ -15,7 +15,9 @@ class ManagerGroupController extends CommonController
         $ManagerGroupInfo->attributes = $ManagerGroupInfoPost;
         if($ManagerGroupInfo->validate() && $ManagerGroupInfo->load(Yii::$app->request->post())){
             $result = ManagerGroupInfo::add($ManagerGroupInfoPost);
-            if($result){$this->redirect(Url::to(['manager-group/list']));}
+            if($result){
+                Yii::mysuccess('管理员分组新增成功！',Url::to(['manager-group/list']));
+            }
         }else{
             $func_list = FunctionInfo::group_list(true);
             foreach($func_list as $key => $val){
@@ -28,7 +30,6 @@ class ManagerGroupController extends CommonController
     }
 
     public function actionList(){
-        error_reporting(0);
         $page = Yii::$app->request->get('page');
         $search = Yii::$app->request->get('search');
         $group = ManagerGroupInfo::lists(20,$page,$search);
@@ -36,7 +37,6 @@ class ManagerGroupController extends CommonController
     }
 
     public function actionUp(){
-        error_reporting(0);
         $id = Yii::$app->request->get('id');
         if($id == 1){exit;}//超级管理员 不能被编辑
         $ManagerGroupInfo = new ManagerGroupInfo();
@@ -44,7 +44,9 @@ class ManagerGroupController extends CommonController
         $ManagerGroupInfo->attributes = $ManagerGroupInfoPost;
         if($ManagerGroupInfo->validate() && $ManagerGroupInfo->load(Yii::$app->request->post())){
             $result = ManagerGroupInfo::up($ManagerGroupInfoPost);
-            if($result){$this->redirect(Url::to(['manager-group/list']));}
+            if($result){
+                Yii::mysuccess('管理员分组编辑成功！',Url::to(['manager-group/list']));
+            }
         }else{
             $func_list = FunctionInfo::group_list(true);
             foreach($func_list as $key => $val){

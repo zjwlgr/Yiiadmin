@@ -1,7 +1,4 @@
 <?php
-
-$params = require(__DIR__ . '/params.php');
-
 $config = [
     'id' => 'basic',
     'version' => '1.0',
@@ -12,6 +9,8 @@ $config = [
     'modules' => [
         'index' => 'app\modules\index\Module',
         'admin' => 'app\modules\admin\Module',
+        'mobile' => 'app\modules\mobile\Module',
+        'api'    => 'app\modules\api\Module'
     ],
     'aliases' => [//自定义别名
         '@foo' => '/path/to/foo',
@@ -20,6 +19,23 @@ $config = [
     'language' => 'zh-CN',
     'timeZone' => 'Asia/Shanghai',
     'components' => [
+        'response' => [
+            'class' => 'yii\web\Response',
+            'on beforeSend' => function ($event) {
+                $response = $event->sender;
+                $r = $response->data;
+                if (is_array($r) && $r['m'] == 'api') {//当前moduel为api时处理响应事件
+                    unset($r['m']);
+                    $response->data = [
+                        //'success' => $response->isSuccessful,
+                        'message' => 'success',
+                        'status' => 200,
+                        'data' => $r,
+                    ];
+                    $response->statusCode = 200;
+                }
+            },
+        ],
         'myhelper' => [
             'class' => 'app\commands\Form1Helper',//自定义组件
         ],
@@ -40,7 +56,9 @@ $config = [
         ],
         'user' => [
             'identityClass' => 'app\models\User',
-            'enableAutoLogin' => true,
+            'enableAutoLogin' => true,//是否开启自动登录
+            //'enableSession' => false,//请求中的用户认证状态就不能通过session来保持
+            //'loginUrl' => null,//显示一个HTTP 403 错误而不是跳转到登录界面
         ],
         'errorHandler' => [
             'errorAction' => 'site/error',
@@ -62,16 +80,12 @@ $config = [
             ],
         ],
         'db' => require(__DIR__ . '/db.php'),
-        /*
-        'urlManager' => [
-            'enablePrettyUrl' => true,
-            'showScriptName' => false,
-            'rules' => [
-            ],
+        'mongodb' => [
+            'class' => 'yii\mongodb\Connection',
+            'dsn' => 'mongodb://root:123456@127.0.0.1:27017/form1',
         ],
-        */
     ],
-    'params' => $params,
+    'params' => require(__DIR__ . '/params.php'),
 ];
 
 if (YII_ENV_DEV) {

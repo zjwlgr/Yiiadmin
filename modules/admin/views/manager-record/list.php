@@ -33,8 +33,8 @@ $this->params['title'] = '管理员登录日志--列表';
                 <th width="9%">姓名</th>
                 <th width="10%">登录IP</th>
                 <th width="7%">登录次数</th>
-                <th width="11%">使用浏览器</th>
                 <th width="11%">使用系统</th>
+                <th width="11%">使用浏览器</th>
                 <th width="15%">登录时间</th>
                 <th width="6%">操作</th>
             </tr>
@@ -48,8 +48,8 @@ $this->params['title'] = '管理员登录日志--列表';
                 <td><?= $val['uname'] ?></td>
                 <td><?= $val['ip'] ?></td>
                 <td><?= $val['number'] ?></td>
-                <td><?= $val['browser'] ?></td>
                 <td><?= $val['system'] ?></td>
+                <td><?= $val['browser'] ?></td>
                 <td><?= date('Y-m-d H:i:s',$val['time']) ?></td>
                 <td>
                     <a href="<?= Url::to(['manager-record/delete', 'id' => $val['id']]) ?>" class="delete" >删除</a>
